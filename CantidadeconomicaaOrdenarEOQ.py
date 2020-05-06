@@ -34,10 +34,15 @@ def EOQsinfaltantes():
         else:
             print("Entonces no puedo hacer nada")
             break
-
-        print("¿Conoce el valor de h (costo total anual de mantener inv $ por unidad por año)? SI/NO")
+        print("¿Conoce el valor de c (costo unitario)? SI/NO")
         decision=input()
         if decision.upper() == "SI":
+            print("Introduce el valor de c (costo unitario)")
+            c=float(input())
+            print("Introduce el valor de  i (costo por mantener el inventario % por año)")
+            i=float(input())
+            h = i*c
+        else:
             print("Introduce el valor de h (costo total anual de mantener inv)")
             h=float(input())
             print("Si conoce el valor de c (costo unitario $/Unidad) presione 1, si conoce i  (costo por mantener el inventario % por año) presione 2, caso contrario cualquier otro")
@@ -49,13 +54,6 @@ def EOQsinfaltantes():
                 print("Introduce el valor de  i (costo por mantener el inventario % por año)")
                 i=float(input())
                 c=h/i
-        else:
-            print("Introduce el valor de c (costo unitario)")
-            c=float(input())
-            print("Introduce el valor de  i (costo por mantener el inventario % por año)")
-            i=float(input())
-            h = i*c
-
         if T !=0:
             print("Se debe colocar un pedido cada T=%f"%T)
 
@@ -135,15 +133,7 @@ def EOQconfaltantes():
         if decision.upper() == "SI":
             print("Introduce el valor de h (costo total anual de mantener inv)")
             h=float(input())
-            print("Si conoce el valor de c (costo unitario $/Unidad) presione 1, si conoce i  (costo por mantener el inventario % por año) presione 2, caso contrario cualquier otro")
-            if decision == "1":
-                print("Introduce el valor de c (costo unitario)")
-                c=float(input())
-                i = h/c
-            elif decision == "2":
-                print("Introduce el valor de  i (costo por mantener el inventario % por año)")
-                i=float(input())
-                c=h/i
+            print("Si conoce el valor de c (costo unitario $/Unidad) presione 1, si conoce i (costo por mantener el inventario % por año) presione 2, caso contrario cualquier otro")
         else:
             print("Introduce el valor de c (costo unitario)")
             c=float(input())
@@ -154,10 +144,14 @@ def EOQconfaltantes():
         if T !=0:
             print("Se debe colocar un pedido cada T=%f"%T)
 
-        if h!=0 and p!=0:
-            QÇ = (math.sqrt(2*D*A/h))*(math.sqrt((IT+h)/IT) 
+        if h!=0 and IT!=0:
+            x=math.sqrt(2*D*A/h)
+            y=math.sqrt((IT+h)/IT)
+            QÇ = (x)*(y) 
             print("El valor de la cantidad económica a ordenar o lote económico Q*=%f"%QÇ)
-            b = (math.sqrt(2*D*A/h))*(math.sqrt(IT/(IT+h))
+            x=math.sqrt(2*D*A/h)
+            y=math.sqrt(IT/(IT+h))
+            b = (x)*(y)
             print("El nivel máximo de órdenes atrasadas b*=%f"%b)
             T = QÇ/D 
             print("Se debe colocar un pedido cada T=%f"%T)
@@ -167,7 +161,8 @@ def EOQconfaltantes():
         if  Q !=0 and IT!=0:
             costoInicial= (A*D)/Q
             costoFaltante= IT*((b**2)/(2*Q))
-            costoMantener= h*(((Q – S)**2)/ 2*Q)
+            a=(Q-b)**2
+            costoMantener= h*(a/2*Q)
             print("El Costo Inicial es=%f"%costoInicial)
             print("El Costo por Faltante es=%f"%costoFaltante)
             print("El Costo por Mantener es=%f"%costoMantener)
@@ -176,10 +171,11 @@ def EOQconfaltantes():
             print("El Costo total anual promedio es K(Q)=%f"%KQ)
             N=D/Q
             print("Número de pedidos N=%f"%N)
-        elif QÇ !=0 and IT!=0::
+        elif QÇ !=0 and IT!=0:
             costoInicial= (A*D)/QÇ
             costoFaltante= IT*((b**2)/(2*QÇ))
-            costoMantener= h*(((QÇ – S)**2)/ 2*QÇ)
+            a=(QÇ-b)**2
+            costoMantener= h*(a/2*QÇ)
             print("El Costo Inicial es=%f"%costoInicial)
             print("El Costo por Faltante es=%f"%costoFaltante)
             print("El Costo por Mantener es=%f"%costoMantener)
@@ -248,9 +244,15 @@ def EPQsinfaltantes():
             print("Entonces no puedo hacer nada")
             break
 
-        print("¿Conoce el valor de h (costo total anual de mantener inv $ por unidad por año)? SI/NO")
+        print("¿Conoce el valor de c (costo unitario)? SI/NO")
         decision=input()
         if decision.upper() == "SI":
+            print("Introduce el valor de c (costo unitario)")
+            c=float(input())
+            print("Introduce el valor de  i (costo por mantener el inventario % por año)")
+            i=float(input())
+            h = i*c
+        else:
             print("Introduce el valor de h (costo total anual de mantener inv)")
             h=float(input())
             print("Si conoce el valor de c (costo unitario $/Unidad) presione 1, si conoce i  (costo por mantener el inventario % por año) presione 2, caso contrario cualquier otro")
@@ -262,12 +264,6 @@ def EPQsinfaltantes():
                 print("Introduce el valor de  i (costo por mantener el inventario % por año)")
                 i=float(input())
                 c=h/i
-        else:
-            print("Introduce el valor de c (costo unitario)")
-            c=float(input())
-            print("Introduce el valor de  i (costo por mantener el inventario % por año)")
-            i=float(input())
-            h = i*c
 
         if T !=0:
             print("Se debe colocar un pedido cada T=%f"%T)
@@ -369,9 +365,15 @@ def EPQconfaltantes():
             print("Entonces no puedo hacer nada")
             break
 
-        print("¿Conoce el valor de h (costo total anual de mantener inv $ por unidad por año)? SI/NO")
+        print("¿Conoce el valor de c (costo unitario)? SI/NO")
         decision=input()
         if decision.upper() == "SI":
+            print("Introduce el valor de c (costo unitario)")
+            c=float(input())
+            print("Introduce el valor de  i (costo por mantener el inventario % por año)")
+            i=float(input())
+            h = i*c
+        else:
             print("Introduce el valor de h (costo total anual de mantener inv)")
             h=float(input())
             print("Si conoce el valor de c (costo unitario $/Unidad) presione 1, si conoce i  (costo por mantener el inventario % por año) presione 2, caso contrario cualquier otro")
@@ -383,12 +385,6 @@ def EPQconfaltantes():
                 print("Introduce el valor de  i (costo por mantener el inventario % por año)")
                 i=float(input())
                 c=h/i
-        else:
-            print("Introduce el valor de c (costo unitario)")
-            c=float(input())
-            print("Introduce el valor de  i (costo por mantener el inventario % por año)")
-            i=float(input())
-            h = i*c
 
         if T !=0:
             print("Se debe colocar un pedido cada T=%f"%T)
